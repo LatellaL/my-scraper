@@ -1,0 +1,33 @@
+name: spcas
+services:
+  main:
+    type: compose
+    services:
+      image: ruby:2.7
+      command: tail -f /dev/null
+    build:
+      - bundle config set with 'default:development'
+      - bundle install --gemfile=/app/Gemfile
+tooling:
+  spcas:
+    service: main
+    cmd: ruby /app/spcas.rb
+    description: 'Runs the SPCA Scanner.'
+  apt:
+    service: main
+    user: root
+  bundle:
+    service: main
+    cmd: bundle
+    dir: /app
+  irb:
+    service: main
+    cmd: irb
+  test:
+    service: main
+    cmd: bundle exec rspec
+    dir: /app
+  lint:
+    service: main
+    cmd: bundle exec rubocop
+    dir: /app
