@@ -11,8 +11,7 @@ require_relative 'spca/scanner'
 require_relative 'spca/cli'
 
 module SPCA
-  ROOT_PATH = File.expand_path(File.dirname(File.dirname(_FILE_)))
+  ROOT_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
   TIMEZONE = '-05:00'
-
 end
